@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RegisterAndLogin;
+use App\Http\Controllers\OrderInvoicePayment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,14 +18,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//login and register
+Route::controller(RegisterAndLogin::class)->group(function () {
+    Route::get('/login', 'login')->name('login');
+    Route::get('/register', 'register')->name('register');
+    Route::post('/store', 'store')->name('store');
+    Route::post('/authenticate', 'authenticate')->name('authenticate');
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
+   // Route::post('/logout', 'logout')->name('logout');
 });
-
-require __DIR__.'/auth.php';
+//OrderInvoicePayment
+Route::controller(OrderInvoicePayment::class)->group(function () {
+    Route::get('/create_order', 'create_order')->name('create_order');
+    Route::get('/create_order', 'store_order')->name('store_order');
+    Route::get('/create_invoice', 'create_invoice')->name('create_invoice');
+    Route::get('/create_payment', 'create_payment')->name('create_payment');
+   // Route::post('/logout', 'logout')->name('logout');
+});
