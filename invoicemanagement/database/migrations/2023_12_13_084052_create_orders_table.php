@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('orderDetails');
             $table->string('orderamount');
             $table->string('enduser');
-            $table->string('orderscm');
-            $table->string('orderComments');
+            $table->string('orderscm')->unique();;
+            $table->string('orderComments')->nullable();
             $table->timestamps();
         });
     }

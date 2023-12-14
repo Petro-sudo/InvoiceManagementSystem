@@ -35,13 +35,15 @@ Route::controller(RegisterAndLogin::class)->group(function () {
     Route::post('/store', 'store')->name('store');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
-   // Route::post('/logout', 'logout')->name('logout');
+    // Route::post('/logout', 'logout')->name('logout');
 });
 //OrderInvoicePayment
 Route::controller(OrderInvoicePayment::class)->group(function () {
     Route::get('/create_order', 'create_order')->name('create_order');
-    Route::get('/create_order', 'store_order')->name('store_order');
+    Route::post('/store_order', 'store_order')->name('store_order');
     Route::get('/create_invoice', 'create_invoice')->name('create_invoice');
+    Route::post('/store_invoice', 'store_invoice')->name('store_invoice');
     Route::get('/create_payment', 'create_payment')->name('create_payment');
-   // Route::post('/logout', 'logout')->name('logout');
+    Route::get('/store_payment', 'store_payment')->name('store_payment');
+    // Route::post('/logout', 'logout')->name('logout');
 });

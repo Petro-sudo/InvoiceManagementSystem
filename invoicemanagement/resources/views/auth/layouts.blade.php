@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel = "shortcut icon" href = "{{url('image/ndpright.png')}}">
+    <link rel="shortcut icon" href="{{url('image/ndpright.png')}}">
     <title>Invoice Management System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 <body>
-<div class="navbar-brand">
-                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
-                    <img src="image/dotleft.jpg"width="10%" height="10%">
-                </h2>
-</div>
+    <div class="navbar-brand">
+        <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
+            <img src="image/dotleft.jpg" width="10%" height="10%">
+        </h2>
+    </div>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
-            
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -42,9 +42,10 @@
                             {{Auth::user()->name}} {{Auth::user()->surname}}
                         </a>
                         <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('create_order') }}">Register Order</a></li>
-                        <li><a class="dropdown-item" href="{{ route('create_invoice') }}">Register Invoice</a></li>
-                        <li><a class="dropdown-item" href="{{ route('create_payment') }}">Register Payment</a></li>
+                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{{ route('create_order') }}">Register Order</a></li>
+                            <li><a class="dropdown-item" href="{{ route('create_invoice') }}">Register Invoice</a></li>
+                            <li><a class="dropdown-item" href="{{ route('create_payment') }}">Register Payment</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
