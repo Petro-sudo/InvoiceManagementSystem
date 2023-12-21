@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('invoice_id');
+            $table->string('paymentreceiver');
+            $table->date('invoicedate');
+            $table->date('paydate');
+            $table->text('paidamount');
+            $table->string('paidwithin30days')->nullable();
+            $table->string('paymentComments')->nullable();
             $table->timestamps();
         });
     }

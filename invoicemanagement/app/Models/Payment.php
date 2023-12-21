@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'invoice_id',
+        'paymentreceiver',
+        'invoicedate',
+        'paydate',
+        'paidamount',
+        'paidwithin30days',
+        'paymentComments',
+    ];
 }

@@ -18,24 +18,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified',
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
 
 //login and register
 Route::controller(RegisterAndLogin::class)->group(function () {
     Route::get('/login', 'login')->name('login');
     Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
-    Route::post('/authenticate', 'authenticate')->name('authenticate');
+    //Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
-    // Route::post('/logout', 'logout')->name('logout');
+    Route::get('/logout', 'logout')->name('logout');
 });
 //OrderInvoicePayment
 Route::controller(OrderInvoicePayment::class)->group(function () {
@@ -44,6 +44,6 @@ Route::controller(OrderInvoicePayment::class)->group(function () {
     Route::get('/create_invoice', 'create_invoice')->name('create_invoice');
     Route::post('/store_invoice', 'store_invoice')->name('store_invoice');
     Route::get('/create_payment', 'create_payment')->name('create_payment');
-    Route::get('/store_payment', 'store_payment')->name('store_payment');
-    // Route::post('/logout', 'logout')->name('logout');
+    Route::post('/store_payment', 'store_payment')->name('store_payment');
+    Route::get('/view_invoice/{data}/view', 'view_invoice')->name('view_invoice');
 });

@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Support\Facades\DB;
+use App\Models\Order;
 
 class RegisterAndLogin extends Controller
 {
@@ -46,12 +46,23 @@ class RegisterAndLogin extends Controller
 
     public function dashboard()
     {
-        
-        if (Auth::check() ) {
-             return view('dashboard');
-       }
-        else {
+
+        if (Auth::check()) {
+            $order = Order::All();
+            return view('dashboard', ['orders' => $order]);
+        } else {
             return redirect()->route('login')->withErrors(['email' => 'Please login to access the dashboard.',])->onlyInput('email');
         }
+    }
+
+    public function viewOrder()
+    {
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login')->withSuccess('You have logged out successfully!');;
     }
 }

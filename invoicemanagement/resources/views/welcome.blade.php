@@ -853,7 +853,7 @@
 
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
             <div class="flex justify-center">
-                    WELCOME TO THE INVOICE MANAGEMENT SYSTEM </p>
+                WELCOME TO THE INVOICE MANAGEMENT SYSTEM </p>
             </div>
             <div class="mt-16">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
@@ -864,8 +864,8 @@
                                     src="image/dotleft.jpg" alt="Cinque Terre" width="170" height="110"></h2>
 
                             <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm     leading-relaxed">
-                                Welcome to Deptament Of Transport  <svg
-                                    viewBox="0 0 200 200" width="50" height="50" xmlns="http:www.w3.org/2000/svg">
+                                Welcome to Deptament Of Transport <svg viewBox="0 0 200 200" width="50" height="50"
+                                    xmlns="http:www.w3.org/2000/svg">
                                     <circle cx="100" cy="100" fill="none" r="78" stroke="black" stroke-width="3" />
                                     <g class="eyes">
                                         <circle cx="61" cy="82" r="12" />
@@ -887,11 +887,13 @@
                                     src="image/ndpright.png" alt="Cinque Terre" width="120" height="120"></h2>
 
                             <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
-                                <?php echo date("Y"); ?> Interns</h2>
+                                <?php echo date("Y"); ?></h2>
 
                             <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm     leading-relaxed">
-                                Welcome to our Invoice ManagementSystem, this is the system were you will be using when capturing 
-                                incoming invoices, orders and payments from supply chain. In order to access this system you need to
+                                Welcome to our Invoice ManagementSystem, this is the system were you will be using when
+                                capturing
+                                incoming invoices, orders and payments from supply chain. In order to access this system
+                                you need to
                                 register first and then login.
                             </p>
                         </div>
@@ -909,7 +911,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                             </svg>
-                             <?php echo date("Y"); ?> 
+                            <?php echo date("Y"); ?>
                         </a>
                     </div>
                 </div>

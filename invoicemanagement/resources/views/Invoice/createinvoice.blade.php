@@ -1,5 +1,5 @@
+@extends('layouts.sidebar')
 @extends('auth.layouts')
-
 @section('content')
 
 <div class="row justify-content-center mt-5">
@@ -26,8 +26,8 @@
                     </div>
                     <div class="form-group">
                         <label for="order_id">Please Select Order Number</label>
-                        <br>
-                        <div class="col-md-6">
+
+                        <div class="col-sm-6 mb-3">
                             <select name="order_id" id="order_id" class="form-control">
                                 <option value="" selected disabled>Select Order Number</option>
                                 @foreach ($orders as $order)
@@ -37,38 +37,37 @@
                             <span class="text-danger">@error('order_id'){{$message}}@enderror</span>
                         </div>
                     </div>
-                    <br>
                     <div class="form-group">
                         <label for="invoicedate">Invoice Received Date From Supplier</label>
                         <input type="date" class="form-control" id="invoicedate" name="invoicedate">
                         <span class="text-danger">@error('invoicedate'){{$message}}@enderror</span>
                     </div>
-                    <br>
+
                     <div class="form-group">
                         <label for="invoicescm">Invoice Number Captured By (SCM)</label>
                         <input type="text" class="form-control" id="invoicescm" placeholder="Enter Invoice Number" name="invoicescm">
                         <span class="text-danger">@error('invoicescm'){{$message}}@enderror</span>
                     </div>
-                    <br>
+
                     <div class="form-group">
                         <label for="invoiceamount">Invoice Amount</label>
                         <input type="text" class="form-control" id="invoiceamount" placeholder="Enter Order Amount (R0.00)" name="invoiceamount">
                         <span class="text-danger">@error('invoiceamount'){{$message}}@enderror</span>
                     </div>
-                    <br>
+
                     <div class="form-group">
                         <label for="invoicereceiver">Invoice Recieved by</label>
                         <input type="text" class="form-control" id="invoicereceiver" placeholder="Enter Name and Surname of Invoice Receiver" name="invoicereceiver">
                         <span class="text-danger">@error('invoicereceiver'){{$message}}@enderror</span>
                     </div>
-                    <br>
+
                     <div class="form-group">
                         <label for="disputedinvoice">Dispute Invoice </label>
 
                         <input type="checkbox" class="form-check-input" id="disputedinvoice" name="disputedinvoice" value="Disputed">
 
                     </div>
-                    <br>
+
                     <div class="form-group">
                         <label for="invoiceComments">Comment</label>
                         <textarea type="text" class="form-control " id="invoiceComments" name="invoiceComments"></textarea>

@@ -14,12 +14,20 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_number')->unique();
+            $table->string('orderscm')->unique();
             $table->date('orderdate');
             $table->string('supplyname');
-            $table->string('orderDetails');
+            $table->string('companyreg');
+            $table->string('supplycsd');
+            $table->string('streetname');
+            $table->string('town');
+            $table->string('zipcode');
+            $table->string('namesurname');
+            $table->string('email');
+            $table->string('cellnumber');
+            $table->string('description');
+            $table->string('qty');
             $table->string('orderamount');
-            $table->string('enduser');
-            $table->string('orderscm')->unique();;
             $table->string('orderComments')->nullable();
             $table->timestamps();
         });
