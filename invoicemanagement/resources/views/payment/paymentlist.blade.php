@@ -27,30 +27,28 @@
         style="width:100%">
         <thead>
             <tr>
-                <th>Order Number</th>
-                <th>Order Number SCM</th>
-                <th>Order Date</th>
-                <th>Supply Name</th>
-                <th>End User Name</th>
-                <!-- <th>Payment Status</th> -->
-                <th>View</th>
+                <th>Invoice Number</th>
+                <th>Payment Receiver</th>
+                <th>Invoice Date Received</th>
+                <th>Payment Date</th>
+                <th>Amount Paid</th>
+                <th>Payment Status</th>
+                <th>Paid Within 30 Days</th>
+                <th>Comment</th>
             </tr>
         </thead>
         <tbody>
 
-            @foreach ($orders as $order)
+            @foreach ($payments as $payment)
             <tr>
-                <td class="text-center">{{$order->order_number}}</td>
-                <td class="text-center">{{$order->orderscm}}</td>
-                <td class="text-center">{{$order->orderdate}}</td>
-                <td class="text-center">{{$order->supplyname}}</td>
-                <td class="text-center">{{$order->namesurname }}</td>
-                <!-- @foreach ($data1 as $data)
-                <td class="text-center">{{$data->fullpaid }}</td>
-                @endforeach -->
-                <td class="text-center">
-                    <a href="{{route('view_invoice',[($order['id'])])}}">View Invoice</a>
-                </td>
+                <td class="text-center">{{$payment->invoicescm}}</td>
+                <td class="text-center">{{$payment->paymentreceiver}}</td>
+                <td class="text-center">{{$payment->invoicedate}}</td>
+                <td class="text-center">{{$payment->paydate}}</td>
+                <td class="text-center">{{$payment->paidamount }}</td>
+                <td class="text-center">{{$payment->fullpaid}}</td>
+                <td class="text-center">{{$payment->paidwithin30days}}</td>
+                <td class="text-center">{{$payment->paymentComments }}</td>
             </tr>
             @endforeach
         </tbody>

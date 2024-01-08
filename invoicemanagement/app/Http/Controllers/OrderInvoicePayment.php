@@ -53,7 +53,7 @@ class OrderInvoicePayment extends Controller
         // }
         // Redirect the user to a success page or back to the form
         Alert::success('Success', 'You Have Registered a New Order!');
-        return redirect('dashboard');
+        return redirect('view_orders');
     }
 
     //get orders
@@ -73,13 +73,14 @@ class OrderInvoicePayment extends Controller
             'invoicedate' => 'required',
             'invoicescm' => 'required|unique:invoices',
             'invoiceamount' => 'required',
+            'tax' => 'required',
             'invoicereceiver' => 'required',
             'disputedinvoice' => '',
             'invoiceComments' => '',
         ]);
         $newInvoice = Invoice::Create($invoice);
         Alert::success('Congrats', 'You Have Registered a New Invoice!');
-        return redirect('dashboard');
+        return redirect('list_invoice');
     }
 
     //get invoice
@@ -94,15 +95,16 @@ class OrderInvoicePayment extends Controller
 
             'invoice_id' => 'required',
             'paymentreceiver' => 'required',
-            'invoicedate' => 'required|unique:invoices',
+            'invoicedate' => 'required',
             'paydate' => 'required',
             'paidamount' => 'required',
             'paidwithin30days' => '',
+            'fullpaid' => '',
             'paymentComments' => '',
         ]);
         $newPayment = Payment::Create($payment);
         Alert::success('Congrats', 'You Have Registered a New Payment!');
-        return redirect('dashboard');
+        return redirect('list_payment');
     }
 
     public function view_invoice($id)
@@ -121,16 +123,22 @@ class OrderInvoicePayment extends Controller
         return view('invoice.viewinvoice', ['data' => $data, 'data1' => $data1,]);
     }
 
-    public function viewReport()
+    public function view_orders(Order $orders)
     {
-        $users = Auth::user();
-        //$user = User::join('reports','reports.user_id', '=', 'users.id')->where('reports.user_id','=','users.id')->where('reports.mentor_id','=',$users->id)->get();
-        // $user = User::join('reports','reports.user_id', '=', 'users.id')->where('reports.mentor_id','=',$users->id)->get();
-        // dd($user)  ;      // $user = User::where('id',$users->id)->get();//GET ONE USER INFO
-        // return view('mentor.view')->with('user',$user);
+        $orders = Order::All();
+        return view('order.orderlist')->with('orders', $orders);
+    }
 
-        // $users = User::all()->where('role','=','1');
-        // $data  = User::all()->where('role','=','3');
-        // return view('intern.createreport', ['users'=>$users, 'data'=>$data,]);
+    public function list_invoice(Invoice $invoices)
+    {
+        $invoices = Invoice::All();
+        return view('invoice.invoicelist')->with('invoices', $invoices);
+    }
+
+    public function list_payment(Payment $payments)
+    {
+        $invoices = Invoice::All();
+        $payments = Invoice::join('payments', 'payments.invoice_id', '=', 'invoices.id')->get();
+        return view('payment.paymentlist')->with('payments', $payments);
     }
 }

@@ -27,30 +27,25 @@
         style="width:100%">
         <thead>
             <tr>
-                <th>Order Number</th>
-                <th>Order Number SCM</th>
-                <th>Order Date</th>
-                <th>Supply Name</th>
-                <th>End User Name</th>
-                <!-- <th>Payment Status</th> -->
-                <th>View</th>
+                <th>Invoice Number</th>
+                <th>Invoice Date</th>
+                <th>Invoice Amount</th>
+                <th>Invoice Receiver</th>
+                <th>Dispute Invoice</th>
+                <th>Comments</th>
+
             </tr>
         </thead>
         <tbody>
 
-            @foreach ($orders as $order)
+            @foreach ($invoices as $invoices)
             <tr>
-                <td class="text-center">{{$order->order_number}}</td>
-                <td class="text-center">{{$order->orderscm}}</td>
-                <td class="text-center">{{$order->orderdate}}</td>
-                <td class="text-center">{{$order->supplyname}}</td>
-                <td class="text-center">{{$order->namesurname }}</td>
-                <!-- @foreach ($data1 as $data)
-                <td class="text-center">{{$data->fullpaid }}</td>
-                @endforeach -->
-                <td class="text-center">
-                    <a href="{{route('view_invoice',[($order['id'])])}}">View Invoice</a>
-                </td>
+                <td class="text-center">{{$invoices->invoice_number}}</td>
+                <td class="text-center">{{$invoices->invoicedate}}</td>
+                <td class="text-center">{{$invoices->invoiceamount}}</td>
+                <td class="text-center">{{$invoices->invoicereceiver}}</td>
+                <td class="text-center">{{$invoices->disputedinvoice }}</td>
+                <td style="text-align: left;">{{$invoices->invoiceComments }}</td>
             </tr>
             @endforeach
         </tbody>

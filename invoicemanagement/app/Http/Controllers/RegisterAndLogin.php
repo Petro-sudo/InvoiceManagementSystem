@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Order;
+use App\Models\Invoice;
 
 class RegisterAndLogin extends Controller
 {
@@ -48,8 +49,9 @@ class RegisterAndLogin extends Controller
     {
 
         if (Auth::check()) {
+            $data1 = Invoice::join('payments', 'payments.invoice_id', '=', 'invoices.id')->get();
             $order = Order::All();
-            return view('dashboard', ['orders' => $order]);
+            return view('dashboard', ['orders' => $order, 'data1' => $data1]);
         } else {
             return redirect()->route('login')->withErrors(['email' => 'Please login to access the dashboard.',])->onlyInput('email');
         }

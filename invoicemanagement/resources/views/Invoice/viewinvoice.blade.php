@@ -60,8 +60,8 @@
     }
 
     .company-details {
-        float: right;
-        text-align: right;
+        float: left;
+        text-align: left;
     }
 
     .body-section {
@@ -132,13 +132,11 @@
             <div class="row">
                 <div class="col-6">
                     <h1 class="text-white">{{ $data->supplyname }}</h1>
-
-                </div>
-                <div class="col-6">
+                    <br>
                     <div class="company-details">
-                        <p class="text-white">{{ $data->companyreg }}</p>
-                        <p class="text-white">{{ $data->supplycsd }}</p>
-                        <p class="text-white">{{ $data->cellnumber }}</p>
+                        <p class="text-white">Company Reg: {{ $data->companyreg }}</p>
+                        <p class="text-white">CSD Number: {{ $data->supplycsd }}</p>
+                        <p class="text-white">Cell No: {{ $data->cellnumber }}</p>
                     </div>
                 </div>
             </div>
@@ -148,14 +146,14 @@
             <div class="row">
                 <div class="col-6">
                     <h2 class="heading">Invoice No.: {{ $data->invoicescm }}</h2>
-                    <!-- <p class="sub-heading">Tracking No. fabcart2025 </p> -->
+                    <p class="sub-heading">Order Number.: {{ $data->orderscm }} </p>
                     <p class="sub-heading">Order Date: {{ $data->orderdate }} </p>
                     <p class="sub-heading">Email Address: {{ $data->email }} </p>
                 </div>
                 <div class="col-6">
                     <p class="sub-heading">Full Name: {{ $data->namesurname }} </p>
-                    <p class="sub-heading">Address: {{ $data->streetname }} </p>
                     <p class="sub-heading">Phone Number: {{ $data->cellnumber }} </p>
+                    <p class="sub-heading">Address: {{ $data->streetname }} </p>
                     <p class="sub-heading">City,State,Pincode: {{ $data->town }} {{ $data->zipcode }}</p>
                 </div>
             </div>
@@ -176,27 +174,43 @@
                 <tbody>
                     <tr>
                         <td>{{ $data->description }}</td>
-                        <td>{{ $data->orderamount }}</td>
+                        <td>R {{ $data->orderamount }}</td>
                         <td>{{ $data->qty }}</td>
-                        <td>R{{ $data->qty*$data->orderamount}}.00</td>
+                        <td>R {{ $data->qty*$data->orderamount}}</td>
                     </tr>
                     <tr>
                         <td colspan="3" class="text-right">Sub Total</td>
-                        <td>R{{ $data->qty*$data->orderamount}}.00</td>
+                        <td>R {{$data->qty*$data->orderamount}}</td>
                     </tr>
                     <tr>
-                        <td colspan="3" class="text-right">Tax Total %1X</td>
-                        <td> NA</td>
+                        <td colspan="3" class="text-right">Tax Total </td>
+                        <td>R {{$data->tax}}</td>
                     </tr>
                     <tr>
                         <td colspan="3" class="text-right">Grand Total</td>
-                        <td> R{{ $data->qty*$data->orderamount}}.00</td>
+                        <td>R {{( $data->qty*$data->orderamount)+$data->tax}}</td>
                     </tr>
                 </tbody>
             </table>
             <br>
-            <h3 class="heading">Payment Status: Paid</h3>
-            <h3 class="heading">Payment Mode: Cash on Delivery</h3>
+            </p>
+            <div class="row">
+                @foreach ($data1 as $paid)
+                <div class="col-6">
+                    <h3 class="heading">Payment Status</h3>
+                    <p style="color: crimson;">{{ $paid->fullpaid }}</p>
+                    <h3 class="heading">Amount Paid</h3>
+                    <p style="color: crimson;">R {{ $paid->paidamount }}</p>
+
+                    <!-- <h3 class="heading">Amount Remaining:R {{(( $data->qty*$data->orderamount)+$data->tax) - $paid->paidamount}}
+            </h3> -->
+                </div>
+                <div class="col-6">
+                    <h3 class="heading">Comments</h3>
+                    <pre>{{ $paid->paymentComments }}</pre>
+                </div>
+                @endforeach
+            </div>
         </div>
         @endforeach
         <div class="body-section">

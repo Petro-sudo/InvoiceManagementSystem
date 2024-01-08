@@ -31,9 +31,9 @@
                 <th>Order Number SCM</th>
                 <th>Order Date</th>
                 <th>Supply Name</th>
-                <th>End User Name</th>
-                <!-- <th>Payment Status</th> -->
-                <th>View</th>
+                <th>Order Details</th>
+                <th>Order Amount</th>
+                <th>Quanitiy</th>
             </tr>
         </thead>
         <tbody>
@@ -44,12 +44,10 @@
                 <td class="text-center">{{$order->orderscm}}</td>
                 <td class="text-center">{{$order->orderdate}}</td>
                 <td class="text-center">{{$order->supplyname}}</td>
-                <td class="text-center">{{$order->namesurname }}</td>
-                <!-- @foreach ($data1 as $data)
-                <td class="text-center">{{$data->fullpaid }}</td>
-                @endforeach -->
+                <td class="text-center">{{$order->description }}</td>
+                <td class="text-center">{{$order->orderamount }}</td>
                 <td class="text-center">
-                    <a href="{{route('view_invoice',[($order['id'])])}}">View Invoice</a>
+                    {{$order->qty }}
                 </td>
             </tr>
             @endforeach

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('invoicedate');
             $table->string('invoicescm')->unique();
             $table->string('invoiceamount');
+            $table->string('tax');
             $table->string('invoicereceiver');
             $table->string('disputedinvoice')->nullable();
             $table->string('invoiceComments')->nullable();

@@ -82,14 +82,33 @@
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('view_orders')">
+                {{ __('View Order') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('create_invoice')">
                 {{ __('Create Invoice') }}
             </x-responsive-nav-link>
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('list_invoice')">
+                {{ __('View Invoice') }}
+            </x-responsive-nav-link>
+        </div>
+
+
+        <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('create_payment')">
                 {{ __('Create Payment') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('list_payment')">
+                {{ __('View Payment') }}
             </x-responsive-nav-link>
         </div>
 

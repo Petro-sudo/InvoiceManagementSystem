@@ -16,6 +16,7 @@ class Invoice extends Model
         'invoicedate',
         'invoicescm',
         'invoiceamount',
+        'tax',
         'invoicereceiver',
         'disputedinvoice',
         'invoiceComments',

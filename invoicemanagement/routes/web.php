@@ -46,4 +46,7 @@ Route::controller(OrderInvoicePayment::class)->group(function () {
     Route::get('/create_payment', 'create_payment')->name('create_payment');
     Route::post('/store_payment', 'store_payment')->name('store_payment');
     Route::get('/view_invoice/{data}/view', 'view_invoice')->name('view_invoice');
+    Route::get('/view_orders', 'view_orders')->name('view_orders');
+    Route::get('/list_invoice', 'list_invoice')->name('list_invoice');
+    Route::get('/list_payment', 'list_payment')->name('list_payment');
 });

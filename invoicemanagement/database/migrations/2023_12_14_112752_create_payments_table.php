@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('paymentreceiver');
             $table->date('invoicedate');
             $table->date('paydate');
-            $table->text('paidamount');
+            //$table->double('income_in_usd', 10, 2);
+            $table->string('paidamount');
+            $table->string('fullpaid');
             $table->string('paidwithin30days')->nullable();
             $table->string('paymentComments')->nullable();
             $table->timestamps();

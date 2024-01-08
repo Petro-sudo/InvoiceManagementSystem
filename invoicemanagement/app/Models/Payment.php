@@ -16,5 +16,6 @@ class Payment extends Model
         'paidamount',
         'paidwithin30days',
         'paymentComments',
+        'fullpaid',
     ];
 }
