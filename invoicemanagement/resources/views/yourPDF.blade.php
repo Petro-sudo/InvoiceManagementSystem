@@ -1,6 +1,3 @@
-@extends('auth.layouts')
-
-@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +34,7 @@
     }
 
     .brand-section {
-        background-color: #c2b45b;
+        background-color: white;
         padding: 10px 40px;
     }
 
@@ -60,8 +57,9 @@
     }
 
     .company-details {
-        float: left;
+
         text-align: left;
+
     }
 
     .body-section {
@@ -130,21 +128,20 @@
         <div class="brand-section">
             <div class="row">
                 <div class="col-6">
-                    <h1 class="text-white">{{ $data->supplyname }}</h1>
-                    <br>
+                    <h1 class="text-black">{{ $data->supplyname }}</h1>
                     <div class="company-details">
-                        <p class="text-white">Company Reg: {{ $data->companyreg }}</p>
-                        <p class="text-white">CSD Number: {{ $data->supplycsd }}</p>
-                        <p class="text-white">Cell No: {{ $data->cellnumber }}</p>
+                        <p class="text-black">Company Reg: {{ $data->companyreg }}</p>
+                        <p class="text-black">CSD Number: {{ $data->supplycsd }}</p>
+                        <p class="text-black">Cell No: {{ $data->cellnumber }}</p>
                     </div>
                 </div>
             </div>
         </div>
-
+        <br>
         <div class="body-section">
             <div class="row">
                 <div class="col-6">
-                    <h2 class="heading">Invoice No.: {{ $data->invoicescm }}</h2>
+                    <p class="sub-heading" style="font-weight: bold;">Invoice No.: {{ $data->invoicescm }}</p>
                     <p class="sub-heading">Order Number.: {{ $data->orderscm }} </p>
                     <p class="sub-heading">Order Date: {{ $data->orderdate }} </p>
                     <p class="sub-heading">Email Address: {{ $data->email }} </p>
@@ -192,24 +189,30 @@
                 </tbody>
             </table>
             <br>
+            <br> <br>
             </p>
             <div class="row">
                 @foreach ($data1 as $paid)
-                <div class="col-6">
-                    <h3 class="heading">Paid Within 30 Days</h3>
-                    <p style="color: crimson;">{{ $paid->paidwithin30days }}</p>
-                    <h3 class="heading">Payment Status</h3>
-                    <p style="color: crimson;">{{ $paid->fullpaid }}</p>
-                    <h3 class="heading">Amount Paid</h3>
-                    <p style="color: crimson;">R {{ $paid->paidamount }}</p>
+                <table class="table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="w-20">Paid Within 30 Days</th>
+                            <th class="w-20">Payment Status</th>
+                            <th class="w-20">Amount Paid</th>
+                            <th class="w-20" style="width:80%">Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{$paid->paidwithin30days}}</td>
+                            <td>{{ $paid->fullpaid}}</td>
+                            <td>R {{ $paid->paidamount}}</td>
+                            <td>{{ $paid->paymentComments}}</td>
+                        </tr>
+                    </tbody>
                     <br>
-                    <!-- <h3 class="heading">Amount Remaining:R {{(( $data->qty*$data->orderamount)+$data->tax) - $paid->paidamount}}
-            </h3> -->
-                </div>
-                <div class="col-6">
-                    <h3 class="heading">Comments</h3>
-                    <pre>{{ $paid->paymentComments }}</pre>
-                </div>
+                </table>
+                <br>
                 @endforeach
             </div>
         </div>
@@ -223,5 +226,3 @@
 </body>
 
 </html>
-<br>
-@endsection

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('tax');
             $table->string('invoicereceiver');
             $table->string('disputedinvoice')->nullable();
-            $table->string('invoiceComments')->nullable();
+            $table->longText('invoiceComments');
             $table->timestamps();
         });
     }

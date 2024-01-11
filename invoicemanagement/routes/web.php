@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterAndLogin;
 use App\Http\Controllers\OrderInvoicePayment;
+use App\Http\Controllers\PdfgenerateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,4 +50,8 @@ Route::controller(OrderInvoicePayment::class)->group(function () {
     Route::get('/view_orders', 'view_orders')->name('view_orders');
     Route::get('/list_invoice', 'list_invoice')->name('list_invoice');
     Route::get('/list_payment', 'list_payment')->name('list_payment');
+});
+
+Route::controller(PdfgenerateController::class)->group(function () {
+    Route::get('/generate_pdf/{data}/view', 'generatePDF')->name('generate_pdf');
 });

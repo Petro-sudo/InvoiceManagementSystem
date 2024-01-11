@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('qty');
             $table->string('orderamount');
-            $table->string('orderComments')->nullable();
+            $table->longText('orderComments');
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('paidamount');
             $table->string('fullpaid');
             $table->string('paidwithin30days')->nullable();
-            $table->string('paymentComments')->nullable();
+            $table->longText('paymentComments');
             $table->timestamps();
         });
     }

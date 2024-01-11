@@ -33,7 +33,8 @@
                 <th>Supply Name</th>
                 <th>End User Name</th>
                 <!-- <th>Payment Status</th> -->
-                <th>View</th>
+                <th>View Recipe</th>
+                <th>Generate Recipe</th>
             </tr>
         </thead>
         <tbody>
@@ -49,7 +50,10 @@
                 <td class="text-center">{{$data->fullpaid }}</td>
                 @endforeach -->
                 <td class="text-center">
-                    <a href="{{route('view_invoice',[($order['id'])])}}">View Invoice</a>
+                    <a href="{{route('view_invoice',[($order['id'])])}}">View Recipe</a>
+                </td>
+                <td class="text-center">
+                    <a href="{{route('generate_pdf',[($order['id'])])}}">Generate PDF</a>
                 </td>
             </tr>
             @endforeach
