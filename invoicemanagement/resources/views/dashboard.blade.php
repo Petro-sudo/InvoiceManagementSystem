@@ -27,21 +27,19 @@
         style="width:100%">
         <thead>
             <tr>
-                <th>Order Number</th>
                 <th>Order Number SCM</th>
                 <th>Order Date</th>
                 <th>Supply Name</th>
                 <th>End User Name</th>
                 <!-- <th>Payment Status</th> -->
-                <th>View Recipe</th>
-                <th>Generate Recipe</th>
+                <th>View Reciept</th>
+                <th>Generate Reciept</th>
             </tr>
         </thead>
         <tbody>
 
             @foreach ($orders as $order)
             <tr>
-                <td class="text-center">{{$order->order_number}}</td>
                 <td class="text-center">{{$order->orderscm}}</td>
                 <td class="text-center">{{$order->orderdate}}</td>
                 <td class="text-center">{{$order->supplyname}}</td>

@@ -2,29 +2,13 @@
 @extends('auth.layouts')
 @section('content')
 <div class="row justify-content-center mt-5">
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-header" style="text-align: center; font-weight:bold;">DLCA REGISTER AN ORDER
             </div>
             <div class="card-body">
                 <form action="{{route('store_order')}}" method="post">
                     @csrf
-
-                    <div class="row">
-                        <div class="col-sm-6 mb-3">
-                            <label for="order_number">Order Number</label>
-                            <input type="text" id="number-input" class="form-control" placeholder="Order Number"
-                                name="order_number">
-                            <span class="text-danger">@error('order_number'){{$message}}@enderror</span>
-
-                        </div>
-
-                        <div class="col-sm-6 mb-3">
-                            <br>
-                            <button type="button" id="generate-btn" class="btn btn-primary">Generate
-                                Number</button>
-                        </div>
-                    </div>
 
                     <div class="form-group">
                         <label for="orderscm">Order Number Captured By (SCM)</label>
@@ -51,7 +35,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="streetname">Enter Address</label>
+                        <label for="streetname">Enter Supply Address</label>
                         <input type="text" class="form-control" id="streetname"
                             placeholder="Enter Street Number and Name" name="streetname">
                         <input type="text" class="form-control" id="town" placeholder="Enter Town" name="town">

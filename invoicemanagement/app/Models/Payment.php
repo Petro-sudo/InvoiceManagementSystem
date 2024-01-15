@@ -10,10 +10,8 @@ class Payment extends Model
     use HasFactory;
     protected $fillable = [
         'invoice_id',
-        'paymentreceiver',
-        'invoicedate',
+        'paymentnumber',
         'paydate',
-        'paidamount',
         'paidwithin30days',
         'paymentComments',
         'fullpaid',

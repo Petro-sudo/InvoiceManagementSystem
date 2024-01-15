@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="row justify-content-center mt-5">
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-header" style="text-align: center; font-weight:bold; width: 100%;">DLCA REGISTER PAYMENT
             </div>
@@ -16,7 +16,7 @@
 
                         <div class="col-md-6">
                             <select name="invoice_id" id="invoice_id" class="form-control">
-                                <option value="" selected disabled>Select Order Number</option>
+                                <option value="" selected disabled>Select Invoice No</option>
                                 @foreach ($invoices as $invoices)
                                 <option value="{{ $invoices->id }}">{{ $invoices->invoicescm }}</option>
                                 @endforeach
@@ -25,31 +25,19 @@
                             <span class="text-danger">@error('invoice_id'){{$message}}@enderror</span>
                         </div>
                     </div>
+                    <p>Supply details after clicking invoice No </p>
 
                     <div class="form-group">
-                        <label for="paymentreceiver">Payment Recieved by</label>
-                        <input type="text" class="form-control" id="paymentreceiver"
-                            placeholder="Enter Name and Surname of Payment Receiver" name="paymentreceiver">
-                        <span class="text-danger">@error('paymentreceiver'){{$message}}@enderror</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="invoicedate">Invoice Received Date -Finance</label>
-                        <input type="date" class="form-control" id="invoicedate" name="invoicedate">
-                        <span class="text-danger">@error('invoicedate'){{$message}}@enderror</span>
+                        <label for="paymentnumber">Payment Number</label>
+                        <input type="text" class="form-control" id="paymentnumber" placeholder="Enter Payment Number"
+                            name="paymentnumber">
+                        <span class="text-danger">@error('paymentnumber'){{$message}}@enderror</span>
                     </div>
 
                     <div class="form-group">
                         <label for="paydate">Payment Date</label>
                         <input type="date" class="form-control" id="paydate" name="paydate">
                         <span class="text-danger">@error('paydate'){{$message}}@enderror</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="paidamount">Amount Paid</label>
-                        <input type="text" class="form-control" id="paidamount"
-                            placeholder="Enter Order Amount Paid (0.00)" name="paidamount">
-                        <span class="text-danger">@error('paidamount'){{$message}}@enderror</span>
                     </div>
 
                     <div class="form-group">
@@ -66,27 +54,14 @@
                                 name="paidwithin30days" value="No">
                             <label class="form-check-label" for="checkbox">No</label>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="paidwithin30days">Full Amount Paid</label>
-
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="fullpaid" name="fullpaid" value="Paid">
-                            <label class="form-check-label" for="checkbox">Yes</label>
-                        </div>
-
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="fullpaid" name="fullpaid"
-                                value="Partial Paid">
-                            <label class="form-check-label" for="checkbox">No</label>
-                        </div>
+                        <span class="text-danger">@error('paidwithin30days'){{$message}}@enderror</span>
                     </div>
 
                     <div class="form-group">
                         <label for="paymentComments">Comment</label>
                         <textarea type="text" class="form-control " id="paymentComments"
                             name="paymentComments"></textarea>
+
                     </div>
 
 

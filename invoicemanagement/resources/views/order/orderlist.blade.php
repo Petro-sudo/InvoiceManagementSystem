@@ -27,7 +27,6 @@
         style="width:100%">
         <thead>
             <tr>
-                <th>Order Number</th>
                 <th>Order Number SCM</th>
                 <th>Order Date</th>
                 <th>Supply Name</th>
@@ -40,7 +39,6 @@
 
             @foreach ($orders as $order)
             <tr>
-                <td class="text-center">{{$order->order_number}}</td>
                 <td class="text-center">{{$order->orderscm}}</td>
                 <td class="text-center">{{$order->orderdate}}</td>
                 <td class="text-center">{{$order->supplyname}}</td>

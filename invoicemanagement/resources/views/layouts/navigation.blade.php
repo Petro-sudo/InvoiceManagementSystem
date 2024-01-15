@@ -89,7 +89,7 @@
 
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('create_invoice')">
-                {{ __('Create Invoice') }}
+                {{ __('Capture Invoice') }}
             </x-responsive-nav-link>
         </div>
 
@@ -108,7 +108,7 @@
 
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('list_payment')">
-                {{ __('View Payment') }}
+                {{ __('Payment Authorazation') }}
             </x-responsive-nav-link>
         </div>
 

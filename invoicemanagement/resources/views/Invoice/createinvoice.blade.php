@@ -3,34 +3,19 @@
 @section('content')
 
 <div class="row justify-content-center mt-5">
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-header" style="text-align: center; font-weight:bold;">DLCA REGISTER AN INVOICE
             </div>
             <div class="card-body">
                 <form action="{{route('store_invoice')}}" method="post">
                     @csrf
-
-                    <div class="row">
-                        <div class="col-sm-6 mb-3">
-                            <label for="invoice_number">Invoice Number</label>
-                            <input type="text" id="invoice_number" class="form-control" placeholder="Invoice Number"
-                                name="invoice_number">
-                            <span class="text-danger">@error('invoice_number'){{$message}}@enderror</span>
-                        </div>
-
-                        <div class="col-sm-6 mb-3">
-                            <br>
-                            <button type="button" id="generate-btn" class="btn btn-primary">Generate
-                                Number</button>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label for="order_id">Please Select Order Number</label>
 
                         <div class="col-sm-6 mb-3">
                             <select name="order_id" id="order_id" class="form-control">
-                                <option value="" selected disabled>Select Order Number</option>
+                                <option value="" selected disabled>Select Order No</option>
                                 @foreach ($orders as $order)
                                 <option value="{{ $order->id }}">{{ $order->orderscm }}</option>
                                 @endforeach
@@ -45,32 +30,40 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="invoicescm">Invoice Number Captured By (SCM)</label>
+                        <label for="invoicereceiver">Invoice Recieved by</label>
+                        <input type="text" class="form-control" id="invoicereceiver"
+                            placeholder="Enter Name and Surname of Invoice Receiver" name="invoicereceiver">
+                        <span class="text-danger">@error('invoicereceiver'){{$message}}@enderror</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="invoicescm">Invoice Number Captured By (Finance)</label>
                         <input type="text" class="form-control" id="invoicescm" placeholder="Enter Invoice Number"
                             name="invoicescm">
                         <span class="text-danger">@error('invoicescm'){{$message}}@enderror</span>
                     </div>
 
                     <div class="form-group">
+                        <label for="typepayment">Type of Payment</label>
 
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="typepayment" name="typepayment"
+                                value="Full Payment">
+                            <label class="form-check-label" for="checkbox">Full Payment</label>
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="typepayment" name="typepayment"
+                                value="Partial Payment">
+                            <label class="form-check-label" for="checkbox">Partial Payment</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="invoiceamount">Invoice Amount</label>
                         <input type="text" class="form-control" id="invoiceamount"
                             placeholder="Enter Order Amount (0.00)" name="invoiceamount">
                         <span class="text-danger">@error('invoiceamount'){{$message}}@enderror</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tax">Tax Amount</label>
-                        <input type="text" class="form-control" id="tax" placeholder="Enter Tax Amount (0.00)"
-                            name="tax">
-                        <span class="text-danger">@error('tax'){{$message}}@enderror</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="invoicereceiver">Invoice Recieved by</label>
-                        <input type="text" class="form-control" id="invoicereceiver"
-                            placeholder="Enter Name and Surname of Invoice Receiver" name="invoicereceiver">
-                        <span class="text-danger">@error('invoicereceiver'){{$message}}@enderror</span>
                     </div>
 
                     <div class="form-group">
@@ -94,6 +87,7 @@
                         <label for="invoiceComments">Comment</label>
                         <textarea type="text" class="form-control " id="invoiceComments"
                             name="invoiceComments"></textarea>
+
                     </div>
                     <br>
 

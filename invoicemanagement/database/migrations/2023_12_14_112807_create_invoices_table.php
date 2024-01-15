@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('invoice_number')->unique();
             $table->unsignedBigInteger('order_id');
             $table->date('invoicedate');
             $table->string('invoicescm')->unique();
             $table->string('invoiceamount');
-            $table->string('tax');
             $table->string('invoicereceiver');
-            $table->string('disputedinvoice')->nullable();
-            $table->longText('invoiceComments');
+            $table->string('disputedinvoice');
+            $table->string('typepayment');
+            $table->longText('invoiceComments')->nullable();;
             $table->timestamps();
         });
     }

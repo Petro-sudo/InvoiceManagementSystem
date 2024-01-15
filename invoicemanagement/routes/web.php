@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterAndLogin;
 use App\Http\Controllers\OrderInvoicePayment;
 use App\Http\Controllers\PdfgenerateController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +40,7 @@ Route::controller(RegisterAndLogin::class)->group(function () {
     //Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::get('/logout', 'logout')->name('logout');
+    Route::get('/admin', 'admindash')->name('admindash');
 });
 //OrderInvoicePayment
 Route::controller(OrderInvoicePayment::class)->group(function () {
@@ -54,4 +58,17 @@ Route::controller(OrderInvoicePayment::class)->group(function () {
 
 Route::controller(PdfgenerateController::class)->group(function () {
     Route::get('/generate_pdf/{data}/view', 'generatePDF')->name('generate_pdf');
+});
+Route::controller(PermissionController::class)->group(function () {
+    Route::get('/permission', 'index')->name('permissionindex');
+    Route::get('/createpermission', 'create')->name('permissioncreate');
+    Route::post('/storepermission', 'store')->name('permissionstore');
+    // Route::resource('permission','PermissionController');
+});
+
+Route::controller(RoleController::class)->group(function () {
+    Route::get('/role', 'index')->name('roleindex');
+    Route::get('/createrole', 'create')->name('rolecreate');
+    //Route::post('/store', 'store')->name('permissionstore');
+    // Route::resource('permission','PermissionController');
 });

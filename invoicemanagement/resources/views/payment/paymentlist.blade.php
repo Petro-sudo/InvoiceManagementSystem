@@ -28,11 +28,8 @@
         <thead>
             <tr>
                 <th>Invoice Number</th>
-                <th>Payment Receiver</th>
-                <th>Invoice Date Received</th>
+                <th>Payment Number</th>
                 <th>Payment Date</th>
-                <th>Amount Paid</th>
-                <th>Payment Status</th>
                 <th>Paid Within 30 Days</th>
                 <th>Comment</th>
             </tr>
@@ -42,11 +39,8 @@
             @foreach ($payments as $payment)
             <tr>
                 <td class="text-center">{{$payment->invoicescm}}</td>
-                <td class="text-center">{{$payment->paymentreceiver}}</td>
-                <td class="text-center">{{$payment->invoicedate}}</td>
+                <td class="text-center">{{$payment->paymentnumber}}</td>
                 <td class="text-center">{{$payment->paydate}}</td>
-                <td class="text-center">{{$payment->paidamount }}</td>
-                <td class="text-center">{{$payment->fullpaid}}</td>
                 <td class="text-center">{{$payment->paidwithin30days}}</td>
                 <td class="text-center">{{$payment->paymentComments }}</td>
             </tr>

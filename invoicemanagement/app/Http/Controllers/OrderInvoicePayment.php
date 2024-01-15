@@ -22,7 +22,6 @@ class OrderInvoicePayment extends Controller
     {
 
         $order = $request->validate([
-            'order_number' => 'required|unique:orders',
             'orderscm' => 'required|unique:orders',
             'orderdate' => 'required',
             'supplyname' => 'required',
@@ -68,18 +67,17 @@ class OrderInvoicePayment extends Controller
     public function store_invoice(Request $request)
     {
         $invoice = $request->validate([
-            'invoice_number' => 'required|unique:invoices',
             'order_id' => 'required',
             'invoicedate' => 'required',
             'invoicescm' => 'required|unique:invoices',
             'invoiceamount' => 'required',
-            'tax' => 'required',
             'invoicereceiver' => 'required',
-            'disputedinvoice' => '',
+            'disputedinvoice' => 'required',
+            'typepayment'=> 'required',
             'invoiceComments' => '',
         ]);
         $newInvoice = Invoice::Create($invoice);
-        Alert::success('Congrats', 'You Have Registered a New Invoice!');
+        Alert::success('Congrats', 'You Have Captured a New Invoice!');
         return redirect('list_invoice');
     }
 
@@ -94,16 +92,13 @@ class OrderInvoicePayment extends Controller
         $payment = $request->validate([
 
             'invoice_id' => 'required',
-            'paymentreceiver' => 'required',
-            'invoicedate' => 'required',
             'paydate' => 'required',
-            'paidamount' => 'required',
-            'paidwithin30days' => '',
-            'fullpaid' => '',
+            'paidwithin30days' => 'required',
+            'paymentnumber' => 'required',
             'paymentComments' => '',
         ]);
         $newPayment = Payment::Create($payment);
-        Alert::success('Congrats', 'You Have Registered a New Payment!');
+        Alert::success('Congrats', 'You Have Authorized a Payment!');
         return redirect('list_payment');
     }
 

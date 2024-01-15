@@ -27,8 +27,8 @@
         style="width:100%">
         <thead>
             <tr>
-                <th>Invoice Number</th>
                 <th>Invoice Date</th>
+                <th>Payment</th>
                 <th>Invoice Amount</th>
                 <th>Invoice Receiver</th>
                 <th>Dispute Invoice</th>
@@ -40,8 +40,8 @@
 
             @foreach ($invoices as $invoices)
             <tr>
-                <td class="text-center">{{$invoices->invoice_number}}</td>
                 <td class="text-center">{{$invoices->invoicedate}}</td>
+                <td class="text-center">{{$invoices->typepayment}}</td>
                 <td class="text-center">{{$invoices->invoiceamount}}</td>
                 <td class="text-center">{{$invoices->invoicereceiver}}</td>
                 <td class="text-center">{{$invoices->disputedinvoice }}</td>

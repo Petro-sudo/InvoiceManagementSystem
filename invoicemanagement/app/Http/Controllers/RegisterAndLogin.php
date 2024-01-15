@@ -18,6 +18,11 @@ class RegisterAndLogin extends Controller
         return view('auth.register');
     }
 
+    public function admindash()
+    {
+        return view('admindashboard');
+    }
+
     public function store(Request $request)
     {
         $request->validate([

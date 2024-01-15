@@ -148,6 +148,7 @@
                     <p class="sub-heading">Order Number.: {{ $data->orderscm }} </p>
                     <p class="sub-heading">Order Date: {{ $data->orderdate }} </p>
                     <p class="sub-heading">Email Address: {{ $data->email }} </p>
+
                 </div>
                 <div class="col-6">
                     <p class="sub-heading">Full Name: {{ $data->namesurname }} </p>
@@ -160,14 +161,13 @@
 
         <div class="body-section">
             <h3 class="heading">Ordered Item</h3>
-            <br>
             <table class="table-bordered">
                 <thead>
                     <tr>
                         <th>Product</th>
                         <th class="w-20">Price</th>
                         <th class="w-20">Quantity</th>
-                        <th class="w-20">Grandtotal</th>
+                        <th>Grand Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -177,42 +177,48 @@
                         <td>{{ $data->qty }}</td>
                         <td>R {{ $data->qty*$data->orderamount}}</td>
                     </tr>
-                    <tr>
-                        <td colspan="3" class="text-right">Sub Total</td>
-                        <td>R {{$data->qty*$data->orderamount}}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="text-right">Tax Total </td>
-                        <td>R {{$data->tax}}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="text-right">Grand Total</td>
-                        <td>R {{( $data->qty*$data->orderamount)+$data->tax}}</td>
-                    </tr>
                 </tbody>
             </table>
             <br>
-            </p>
+            <h3 class="heading">Invoice Captured</h3>
+            <table class="table-bordered">
+                <thead>
+                    <tr>
+                        <th>Invoice Date</th>
+                        <th>Type of Payment</th>
+                        <th class="w-20">Invoice Amount</th>
+                        <th>Dispute Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ $data->description }}</td>
+                        <td>R {{ $data->orderamount }}</td>
+                        <td>{{ $data->qty }}</td>
+                        <td>R {{ $data->qty*$data->orderamount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 class="heading">Payment Authorasation</h3>
             <div class="row">
-                @foreach ($data1 as $paid)
                 <div class="col-6">
-                    <h3 class="heading">Paid Within 30 Days</h3>
-                    <p style="color: crimson;">{{ $paid->paidwithin30days }}</p>
-                    <h3 class="heading">Payment Status</h3>
-                    <p style="color: crimson;">{{ $paid->fullpaid }}</p>
-                    <h3 class="heading">Amount Paid</h3>
-                    <p style="color: crimson;">R {{ $paid->paidamount }}</p>
-                    <br>
-                    <!-- <h3 class="heading">Amount Remaining:R {{(( $data->qty*$data->orderamount)+$data->tax) - $paid->paidamount}}
-            </h3> -->
+                    <h2 class="heading">Invoice No.: {{ $data->invoicescm }}</h2>
+                    <p class="sub-heading">Order Number.: {{ $data->orderscm }} </p>
+                    <p class="sub-heading">Order Date: {{ $data->orderdate }} </p>
+                    <p class="sub-heading">Email Address: {{ $data->email }} </p>
+
                 </div>
                 <div class="col-6">
-                    <h3 class="heading">Comments</h3>
-                    <pre>{{ $paid->paymentComments }}</pre>
+                    <p class="sub-heading">Full Name: {{ $data->namesurname }} </p>
+                    <p class="sub-heading">Phone Number: {{ $data->cellnumber }} </p>
+                    <p class="sub-heading">Address: {{ $data->streetname }} </p>
+                    <p class="sub-heading">City,State,Pincode: {{ $data->town }} {{ $data->zipcode }}</p>
                 </div>
-                @endforeach
             </div>
         </div>
+
+        <br>
+
         @endforeach
         <div class="body-section">
             <p>&copy; Copyright <?php echo date("Y"); ?> - Department of Transport. All rights reserved.
