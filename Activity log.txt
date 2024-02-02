@@ -1,0 +1,76 @@
+How to Track All User Activity in Laravel Application?
+Hello Laravel Friends,
+
+In this blog, we will explore how to implement user activity tracking in a Laravel application to gain better insights and enhance user experience.
+
+As the popularity of web applications continues to soar, understanding user behavior and interactions within your Laravel application becomes paramount. Tracking user activity not only provides valuable insights into user preferences but also helps debug and ensure your application’s security.
+
+Let’s see how you can track user activity in Laravel.
+
+Contents [hide]
+
+1 Steps to Track All User Activity in Laravel Application:
+2 Conclusion:
+Steps to Track All User Activity in Laravel Application:
+Step 1:  Create a Laravel project using the below command
+
+composer create-project laravel/laravel:^9.0 laravel-blog
+Step 2: To get all activity logs, we use the spatie/laravel-medialibrary
+
+composer require "spatie/laravel-medialibrary:^10.0.0"
+Step 3: You need to publish the migration to create the media table using the below command
+
+php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" –tag="migrations"
+Step 4: After that, you need to run the migration command
+
+php artisan migrate
+Step 5: Now, publish the config File using the below command 
+
+php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" –tag="config"
+Step 6: You can log activity like the below code 
+
+public function userCreate(Request $request)
+{
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        
+        activity('create')
+        ->performedOn($user) // Entry add in table. model name(subject_type) & id(subject_id)
+        ->causedBy(Auth::user()) //causer_id = admin id, causer type = admin model
+        ->log('User Created By ' . Auth::user()->name);
+
+        return redirect()->route('user-index')->with('success', "User Create Successfully");
+}
+public function userCreate(Request $request)
+{
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        
+        activity('create')
+        ->performedOn($user) // Entry add in table. model name(subject_type) & id(subject_id)
+        ->causedBy(Auth::user()) //causer_id = admin id, causer type = admin model
+        ->log('User Created By ' . Auth::user()->name);
+ 
+        return redirect()->route('user-index')->with('success', "User Create Successfully");
+}
+Step 7: Get All activity using the below code
+
+<?php
+ 
+namespace App\Http\Controllers;
+use Spatie\Activitylog\Models\Activity;
+ 
+class ActivityController extends Controller
+{
+ public function activityLogsList()
+   {
+     $activityLogData = Activity::with('causer')->get();
+     return view('activity-logs', compact('activityLogData'));
+   }
+}
+Output:
+
