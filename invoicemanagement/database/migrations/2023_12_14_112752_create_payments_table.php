@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('invoice_id');
             $table->date('paydate');
-            //$table->double('income_in_usd', 10, 2);
-            $table->string('paymentnumber');
+            $table->string('paymentnumber')->unique();
             $table->string('authorizedby');
             $table->string('paidwithin30days');
             $table->longText('paymentComments')->nullable();;

@@ -41,7 +41,7 @@ Authorized Payment
 
             @foreach ($payments as $payment)
             <tr>
-                <td class="text-center">{{$payment->invoice_id}}</td>
+                <td class="text-center">{{$payment->invoicescm}}</td>
                 <td class="text-center">{{$payment->paymentnumber}}</td>
                 <td class="text-center">{{$payment->paydate}}</td>
                 <td class="text-center">{{$payment->paidwithin30days}}</td>

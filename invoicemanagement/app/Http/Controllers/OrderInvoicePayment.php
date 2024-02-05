@@ -63,21 +63,21 @@ class OrderInvoicePayment extends Controller
     {
 
 
-        // $invoice = DB::table('orders')
+        // $invoices = DB::table('orders')
         //     ->join('invoices', 'invoices.order_id', '=', 'orders.id')
-        //     ->where('invoices.order_id',  1)
+        //     ->where('invoices.order_id',  4)
         //     ->select('invoices.invoiceamount')
-        //     ->where('orders.id',  1)
+        //     ->where('orders.id',  4)
         //     ->sum('invoices.invoiceamount');
 
-        // $order = DB::table('orders')
-        //     ->join('invoices', 'invoices.order_id', '=', 'orders.id')
-        //     ->where('invoices.order_id',  1)
-        //     ->select('orders.orderamount')
-        //     ->where('orders.id',  1)
-        //     ->value('orders.orderamount');
-        // $Pmt = $order -  $invoice;
-        // // dd($Pmt);
+        // $orders = DB::table('orders')
+        //     // ->join('invoices', 'invoices.order_id', '=', 'orders.id')
+        //     ->where('orders.id',  4)
+        //     ->select('orderamount')
+        //     ->where('orders.id',  4)
+        //     ->value('orderamount');
+        // $Pmt = $orders -  $invoices;
+        // dd($orders);
 
         // if ($Pmt == 0.0 || $Pmt == 0 || $Pmt == 0.00) {
         //     echo "Fully Paid";
@@ -145,32 +145,7 @@ class OrderInvoicePayment extends Controller
         $invoice->disputedinvoice = $request->disputedinvoice;
         $invoice->typepayment = $request->typepayment;
         $invoice->invoiceComments = $request->invoiceComments;
-        // $invoice->invoiceComments = $request->invoiceComments;
-        // $product = Order::select('id', 'orderamount')
-        //     ->whereIn('id', $cart->pluck('order_id'))
-        //     ->pluck('id', 'orderamount');
-        // foreach ($cart as $invoiceOrder) {
 
-        //     if (isset($product[$invoiceOrder->order_id]) && $product[$invoiceOrder->orderamount] > $invoiceOrder->invoiceamount) {
-        //         Alert::success('Error', 'Overpaid!');
-        //         $this->checkout_message = 'Error: Amount exceeded';
-        //     }
-        // }
-
-        //TO DO
-        // $result = DB::table('orders')
-        //     ->join('invoices', 'invoices.order_id', '=', 'orders.id')
-        //     ->where('invoices.order_id', '=', $invoice->order_id)
-        //     ->select('invoices.order_id')
-        //     ->sum('invoices.invoiceamount') + $invoice->invoiceamount;
-
-        // $orders = DB::table('orders')
-        //     //   ->join('invoices', 'invoices.order_id', '=', 'orders.id')
-        //     ->where('orders.id', '=', $invoice->order_id)
-        //     ->select('orders.id')
-        //     ->sum('orderamount');
-        // $balance = $result;
-        // $Pmt = $orders - $balance;
 
         $invoices = DB::table('orders')
             ->join('invoices', 'invoices.order_id', '=', 'orders.id')
@@ -179,7 +154,6 @@ class OrderInvoicePayment extends Controller
             ->sum('invoices.invoiceamount') + $invoice->invoiceamount;
 
         $orders = DB::table('orders')
-            ->join('invoices', 'invoices.order_id', '=', 'orders.id')
             ->where('orders.id',  $invoice->order_id)
             ->select('orderamount')
             ->where('orders.id',  $invoice->order_id)
@@ -188,13 +162,13 @@ class OrderInvoicePayment extends Controller
         //dd($result);
 
         if ($Pmt == 0.0 || $Pmt == 0 || $Pmt == 0.00) {
-            Alert::success('Congrats', 'Amount full paid!');
+            Alert::success('Congrats', 'Total Invoice Amount is Paid');
             $invoice->save();
         } else if ($Pmt > 0) {
-            Alert::warning('Warning', 'Still owning!');
+            Alert::warning('Warning', 'The Invoice is Still Owning!');
             $invoice->save();
         } else if ($Pmt <= -0) {
-            Alert::error('Error', 'Overpaid!');
+            Alert::error('Error', 'The Invoice Amount is Overpaid!');
         }
         activity('Captured Invoice')->performedOn($invoice) // Entry add in table. model name(subject_type) & id(su& id(subject_id)
             // Entry add in table. model name(subject_type) & id(subject_id)
@@ -270,7 +244,7 @@ class OrderInvoicePayment extends Controller
 
     public function list_payment(Payment $payments)
     {
-        $payments = Payment::All();
+        $payments = Invoice::join('payments', 'payments.invoice_id', '=', 'invoices.id')->get();
         return view('payment.paymentlist')->with('payments', $payments);
     }
 
