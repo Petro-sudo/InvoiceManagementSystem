@@ -146,7 +146,6 @@ class OrderInvoicePayment extends Controller
         $invoice->typepayment = $request->typepayment;
         $invoice->invoiceComments = $request->invoiceComments;
 
-
         $invoices = DB::table('orders')
             ->join('invoices', 'invoices.order_id', '=', 'orders.id')
             ->where('invoices.order_id', $invoice->order_id)
@@ -158,18 +157,28 @@ class OrderInvoicePayment extends Controller
             ->select('orderamount')
             ->where('orders.id',  $invoice->order_id)
             ->value('orders.orderamount');
+
         $Pmt = $orders - $invoices;
         //dd($result);
 
         if ($Pmt == 0.0 || $Pmt == 0 || $Pmt == 0.00) {
             Alert::success('Congrats', 'Total Invoice Amount is Paid');
+            activity('Captured Invoice')->performedOn($invoice) // Entry add in table. model name(subject_type) & id(su& id(subject_id)
+                // Entry add in table. model name(subject_type) & id(subject_id)
+                ->causedBy(Auth::user()) //causer_id = admin id, causer type = admin model
+                ->log(Auth::user()->email);
             $invoice->save();
         } else if ($Pmt > 0) {
             Alert::warning('Warning', 'The Invoice is Still Owning!');
+            activity('Captured Invoice')->performedOn($invoice) // Entry add in table. model name(subject_type) & id(su& id(subject_id)
+                // Entry add in table. model name(subject_type) & id(subject_id)
+                ->causedBy(Auth::user()) //causer_id = admin id, causer type = admin model
+                ->log(Auth::user()->email);
             $invoice->save();
         } else if ($Pmt <= -0) {
             Alert::error('Error', 'The Invoice Amount is Overpaid!');
         }
+
         activity('Captured Invoice')->performedOn($invoice) // Entry add in table. model name(subject_type) & id(su& id(subject_id)
             // Entry add in table. model name(subject_type) & id(subject_id)
             ->causedBy(Auth::user()) //causer_id = admin id, causer type = admin model
@@ -177,21 +186,6 @@ class OrderInvoicePayment extends Controller
         //Alert::success('Congrats', 'You Have Captured a New Invoice!');
         // $invoice->save();
         return redirect('list_invoice');
-
-
-        // $invoice = $request->validate([
-        //     'order_id' => 'required',
-        //     'invoicedate' => 'required',
-        //     'supplyname' => 'required',
-        //     'invoicescm' => 'required|unique:invoices',
-        //     'invoiceamount' => 'required',
-        //     'invoicereceiver' => 'required',
-        //     'disputedinvoice' => 'required',
-        //     'typepayment' => 'required',
-        //     'invoiceComments' => '',
-        // ]);
-        // $newInvoice = Invoice::Create($invoice);
-        // $invoice = new Invoice();
     }
 
     //get invoice
@@ -220,15 +214,8 @@ class OrderInvoicePayment extends Controller
     {
         $orders = Order::All();
         $invoices = Invoice::All();
-        // $data = DB::select('select * FROM orders
-        // INNER JOIN invoices
-        // WHERE orders.id=invoices.order_id');
-        // dd($data);
-        // $data = Order::join('invoices', 'invoices.order_id', '=', 'orders.id')->where('invoices.order_id', '=', $orders[0]->id)->get();
         $data = Order::join('invoices', 'invoices.order_id', '=', 'orders.id')->where('invoices.order_id', '=', $id)->get();
-
         $data1 = Invoice::join('payments', 'payments.invoice_id', '=', 'invoices.id')->where('payments.invoice_id', '=', $invoices[0]->id)->get();
-
         return view('invoice.viewinvoice', ['data' => $data, 'data1' => $data1,]);
     }
     public function view_orders(Order $orders)
