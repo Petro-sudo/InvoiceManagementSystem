@@ -14,6 +14,11 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+    public function create_order()
+    {
+        return view('order.createorder');
+    }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [

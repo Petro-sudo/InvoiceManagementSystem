@@ -40,9 +40,9 @@ Activity Log
         <tbody>
             @foreach ($activityLogData as $order)
             <tr>
-                <td class="text-center">{{$order->description}}</td>
-                <td class="text-center">{{$order->log_name}}</td>
-                <td class="text-center">{{$order->created_at}}</td>
+                <td>{{$order->description}}</td>
+                <td>{{$order->log_name}}</td>
+                <td>{{$order->created_at}}</td>
 
             </tr>
             @endforeach

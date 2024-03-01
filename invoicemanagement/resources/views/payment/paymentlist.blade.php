@@ -1,4 +1,3 @@
-@extends('layouts.sidebar')
 @extends('auth.layouts')
 @section('title')
 Authorized Payment

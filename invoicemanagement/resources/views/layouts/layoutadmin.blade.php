@@ -42,11 +42,8 @@
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{route('admindash')}}" class="nav-link">Home</a>
+                    <a href="{{route('dashboard')}}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -71,8 +68,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-                <span class="brand-text font-weight-light">Invoice Management System</span>
+            <a class="brand-link">
+                <span class="brand-text font-weight-light" style="color: aliceblue;">Invoice Management System</span>
             </a>
 
             <!-- Sidebar -->
@@ -81,12 +78,10 @@
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="info">
 
-                        <a href="#"> <span> {{Auth::user()->name}}
+                        <a href="{{route('admin')}}"> <span> {{Auth::user()->name}}
                                 {{Auth::user()->surname}}</span></a>
                     </div>
                 </div>
-
-
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -95,7 +90,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{route('admindash')}}" class="nav-link">
+                            <a href="{{route('dashboard')}}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Dashboard
@@ -112,41 +107,44 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
+                                    <a href="{{route('createuser')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-user-plus"></i>
                                         <p>Create Users</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Change Password</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                    <a href="{{route('viewusers')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-users"></i>
                                         <p>View Users</p>
                                     </a>
                                 </li>
-                            </ul>
-                        </li>
 
-                        <li class="nav-item">
-                            <a href="{{route('permissionindex')}}" class="nav-link">
-                                <i class="nav-icon fas fa-bomb"></i>
-                                <p>
-                                    Permission
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('roleindex')}}" class="nav-link">
-                                <i class="nav-icon fas fa-thin fa-bomb"></i>
-                                <p>
-                                    Roles
-                                </p>
-                            </a>
+                                <li class="nav-item">
+                                    <a href="{{route('register')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-receipt"></i>
+                                        <p>
+                                            Order Registers
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('capture')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-file-invoice"></i>
+                                        <p>
+                                            Invoice Capturers
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('authorizer')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-cash-register"></i>
+                                        <p>
+                                            Payment Authorizers
+                                        </p>
+                                    </a>
+                                </li>
+
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('activitylogs')}}" class="nav-link">

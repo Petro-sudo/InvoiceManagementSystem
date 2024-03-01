@@ -11,11 +11,12 @@ class PermissionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function __construct(Permission $permission)
+    public function create_order()
     {
-        $this->$permission = $permission;
-        $this->middleware("auth");
+        return view('order.createorder');
     }
+
+
     public function index()
     {
         //$permissions = $this->permission->all();

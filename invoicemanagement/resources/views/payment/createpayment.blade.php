@@ -1,4 +1,4 @@
-@extends('layouts.sidebar')
+@extends('layouts.sidebar4')
 @extends('auth.layouts')
 @section('title')
 Create Payment

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Spatie\Activitylog\Models\Activity;
-//use App\Models\Student;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Models\Order;
@@ -11,11 +10,18 @@ use App\Models\Payment;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rules\In;
+
 
 
 class OrderInvoicePayment extends Controller
 {
+    protected $user;
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->user = Auth::User();
+    }
+
     public function create_order()
     {
         return view('order.createorder');
@@ -45,9 +51,8 @@ class OrderInvoicePayment extends Controller
         $newOrder = Order::Create($order);
 
         $orders = new Order();
-        activity('Created Order')->performedOn($orders) // Entry add in table. model name(subject_type) & id(su& id(subject_id)
-            // Entry add in table. model name(subject_type) & id(subject_id)
-            ->causedBy(Auth::user()) //causer_id = admin id, causer type = admin model
+        activity('Created Order')->performedOn($orders)
+            ->causedBy(Auth::user())
             ->log(Auth::user()->email);
         Alert::success('Success', 'You Have Created a New Order!');
         return redirect('view_orders');
@@ -55,41 +60,14 @@ class OrderInvoicePayment extends Controller
     //display LOGS
     public function activityLogsList()
     {
-        $activityLogData = Activity::with('causer')->get(); //causer_id = admin id, causer type = admin model
+        $activityLogData = Activity::with('causer')->get();
         return view('admin.activity-logs', compact('activityLogData'));
     }
     //get orders
     public function create_invoice(Order $orders)
     {
-
-
-        // $invoices = DB::table('orders')
-        //     ->join('invoices', 'invoices.order_id', '=', 'orders.id')
-        //     ->where('invoices.order_id',  4)
-        //     ->select('invoices.invoiceamount')
-        //     ->where('orders.id',  4)
-        //     ->sum('invoices.invoiceamount');
-
-        // $orders = DB::table('orders')
-        //     // ->join('invoices', 'invoices.order_id', '=', 'orders.id')
-        //     ->where('orders.id',  4)
-        //     ->select('orderamount')
-        //     ->where('orders.id',  4)
-        //     ->value('orderamount');
-        // $Pmt = $orders -  $invoices;
-        // dd($orders);
-
-        // if ($Pmt == 0.0 || $Pmt == 0 || $Pmt == 0.00) {
-        //     echo "Fully Paid";
-        // } else if ($Pmt > 0) {
-        //     echo "Not full Paid";
-        // } else if ($Pmt <= -0) {
-        //     echo "Morethan";
-        // }
-
         $orders = Order::All();
         $invoices = Order::All();
-        // return view('invoice.createinvoice')->with('orders', $orders);
         return view('invoice.createinvoice', ['orders' => $orders, 'invoices' => $invoices,]);
     }
     public function getOrders(Request $request)
@@ -119,7 +97,6 @@ class OrderInvoicePayment extends Controller
             abort(403);
         }
     }
-    //store invoice
 
     public function store_invoice(Request $request)
     {
@@ -163,32 +140,28 @@ class OrderInvoicePayment extends Controller
 
         if ($Pmt == 0.0 || $Pmt == 0 || $Pmt == 0.00) {
             Alert::success('Congrats', 'Total Invoice Amount is Paid');
-            activity('Captured Invoice')->performedOn($invoice) // Entry add in table. model name(subject_type) & id(su& id(subject_id)
-                // Entry add in table. model name(subject_type) & id(subject_id)
-                ->causedBy(Auth::user()) //causer_id = admin id, causer type = admin model
+            activity('Captured Invoice')->performedOn($invoice)
+                ->causedBy(Auth::user())
                 ->log(Auth::user()->email);
             $invoice->save();
         } else if ($Pmt > 0) {
             Alert::warning('Warning', 'The Invoice is Still Owning!');
-            activity('Captured Invoice')->performedOn($invoice) // Entry add in table. model name(subject_type) & id(su& id(subject_id)
-                // Entry add in table. model name(subject_type) & id(subject_id)
-                ->causedBy(Auth::user()) //causer_id = admin id, causer type = admin model
+            activity('Captured Invoice')->performedOn($invoice)
+                ->causedBy(Auth::user())
                 ->log(Auth::user()->email);
             $invoice->save();
         } else if ($Pmt <= -0) {
             Alert::error('Error', 'The Invoice Amount is Overpaid!');
         }
 
-        activity('Captured Invoice')->performedOn($invoice) // Entry add in table. model name(subject_type) & id(su& id(subject_id)
-            // Entry add in table. model name(subject_type) & id(subject_id)
-            ->causedBy(Auth::user()) //causer_id = admin id, causer type = admin model
+        activity('Captured Invoice')->performedOn($invoice)
+            ->causedBy(Auth::user())
             ->log(Auth::user()->email);
-        //Alert::success('Congrats', 'You Have Captured a New Invoice!');
-        // $invoice->save();
+
         return redirect('list_invoice');
     }
 
-    //get invoice
+
     public function store_payment(Request $request)
     {
         $payment = $request->validate([
@@ -225,7 +198,7 @@ class OrderInvoicePayment extends Controller
     }
     public function list_invoice(Invoice $invoices)
     {
-        $invoices = Order::join('invoices', 'invoices.order_id', '=', 'orders.id')->get();;
+        $invoices = Order::join('invoices', 'invoices.order_id', '=', 'orders.id')->get();
         return view('invoice.invoicelist')->with('invoices', $invoices);
     }
 
@@ -238,7 +211,6 @@ class OrderInvoicePayment extends Controller
     public function create_payment()
     {
         $invoices = Invoice::All();
-        //$invoices = Order::join('invoices', 'invoices.order_id', '=', 'orders.orderscm')->get();
         return view('payment.createpayment')->with('invoices', $invoices);
     }
 
@@ -270,16 +242,3 @@ class OrderInvoicePayment extends Controller
         }
     }
 }
-//adding
- //$orders = Order::find($id)->orderamount;
-        // dd($orders);
-        // $result = DB::table('orders')
-        //     ->join('invoices', 'invoices.order_id', '=', 'orders.id')
-        //     ->where('invoices.order_id', $id)
-        //     ->select('invoices.order_id')
-        //     ->sum('invoices.invoiceamount');
-        //$data = Order::join('invoices', 'invoices.order_id', '=', 'orders.id')->get();
-
-        // $result += $request->invoiceamount;
-        //$balance = $result;
-        //$Pmt = $orders - $balance;

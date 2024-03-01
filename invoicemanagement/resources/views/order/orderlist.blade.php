@@ -1,4 +1,3 @@
-@extends('layouts.sidebar')
 @extends('auth.layouts')
 @section('title')
 View All Orders
@@ -34,8 +33,8 @@ View All Orders
                 <th>Order Date</th>
                 <th>Supply Name</th>
                 <th>Order Details</th>
-                <th>Order Amount</th>
                 <th>Quanitiy</th>
+                <th>Order Amount</th>
             </tr>
         </thead>
         <tbody>
@@ -46,10 +45,11 @@ View All Orders
                 <td class="text-center">{{$order->orderdate}}</td>
                 <td class="text-center">{{$order->supplyname}}</td>
                 <td class="text-center">{{$order->description }}</td>
-                <td class="text-center">{{$order->orderamount }}</td>
                 <td class="text-center">
                     {{$order->qty }}
                 </td>
+                <td class="text-center">{{$order->orderamount }}</td>
+
             </tr>
             @endforeach
         </tbody>

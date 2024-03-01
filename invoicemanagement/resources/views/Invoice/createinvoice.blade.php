@@ -1,4 +1,4 @@
-@extends('layouts.sidebar')
+@extends('layouts.sidebar3')
 @extends('auth.layouts')
 @section('title')
 Capture Invoice
@@ -52,7 +52,8 @@ Capture Invoice
                     </div>
                     <div class="form-group">
                         <label for="supplyname">Supply Name</label>
-                        <input type="text" class="form-control" id="supplyname" placeholder="Enter Supply Name" name="supplyname">
+                        <input type="text" class="form-control" id="supplyname" placeholder="Enter Supply Name"
+                            name="supplyname">
                         <span class="text-danger">@error('supplyname'){{$message}}@enderror</span>
                     </div>
                     <div class="form-group">
@@ -63,13 +64,15 @@ Capture Invoice
 
                     <div class="form-group">
                         <label for="invoicereceiver">Invoice Recieved by</label>
-                        <input type="text" class="form-control" id="invoicereceiver" placeholder="Enter Name and Surname of Invoice Receiver" name="invoicereceiver">
+                        <input type="text" class="form-control" id="invoicereceiver"
+                            placeholder="Enter Name and Surname of Invoice Receiver" name="invoicereceiver">
                         <span class="text-danger">@error('invoicereceiver'){{$message}}@enderror</span>
                     </div>
 
                     <div class="form-group">
                         <label for="invoicescm">Invoice Number Captured By (Finance)</label>
-                        <input type="text" class="form-control" id="invoicescm" placeholder="Enter Invoice Number" name="invoicescm">
+                        <input type="text" class="form-control" id="invoicescm" placeholder="Enter Invoice Number"
+                            name="invoicescm">
                         <span class="text-danger">@error('invoicescm'){{$message}}@enderror</span>
                     </div>
 
@@ -77,19 +80,22 @@ Capture Invoice
                         <label for="typepayment">Type of Payment</label>
 
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="typepayment" name="typepayment" value="Full Payment">
+                            <input type="checkbox" class="form-check-input" id="typepayment" name="typepayment"
+                                value="Full Payment">
                             <label class="form-check-label" for="checkbox">Full Payment</label>
                         </div>
 
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="typepayment" name="typepayment" value="Partial Payment">
+                            <input type="checkbox" class="form-check-input" id="typepayment" name="typepayment"
+                                value="Partial Payment">
                             <label class="form-check-label" for="checkbox">Partial Payment</label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="invoiceamount">Invoice Amount</label>
-                        <input type="text" class="form-control" id="invoiceamount" placeholder="Enter Order Amount (0.00)" name="invoiceamount">
+                        <input type="text" class="form-control" id="invoiceamount"
+                            placeholder="Enter Order Amount (0.00)" name="invoiceamount">
                         <span class="text-danger">@error('invoiceamount'){{$message}}@enderror</span>
                     </div>
 
@@ -97,12 +103,14 @@ Capture Invoice
                         <label for="disputedinvoice">Dispute Invoice</label>
 
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="disputedinvoice" name="disputedinvoice" value="Disputed">
+                            <input type="checkbox" class="form-check-input" id="disputedinvoice" name="disputedinvoice"
+                                value="Disputed">
                             <label class="form-check-label" for="checkbox">Yes</label>
                         </div>
 
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="disputedinvoice" name="disputedinvoice" value="Not-Disputed">
+                            <input type="checkbox" class="form-check-input" id="disputedinvoice" name="disputedinvoice"
+                                value="Not-Disputed">
                             <label class="form-check-label" for="checkbox">No</label>
                         </div>
                         <span class="text-danger">@error('disputedinvoice'){{$message}}@enderror</span>
@@ -111,7 +119,8 @@ Capture Invoice
 
                     <div class="form-group">
                         <label for="invoiceComments">Comment</label>
-                        <textarea type="text" class="form-control " id="invoiceComments" name="invoiceComments"></textarea>
+                        <textarea type="text" class="form-control " id="invoiceComments"
+                            name="invoiceComments"></textarea>
 
                     </div>
                     <br>
@@ -126,10 +135,12 @@ Capture Invoice
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js">
 </script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js">
 </script>
-<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" charset="utf8"
+    src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js">
 </script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js">
@@ -137,73 +148,73 @@ Capture Invoice
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js">
 </script>
 <script>
-    function fetch_ord() {
-        $.ajax({
-            url: "{{ route('getorders') }}",
-            type: "GET",
-            dataType: "json",
-            success: function(data) {
-                var stdBody = "";
-                for (var key in data) {
-                    stdBody +=
-                        `<option value="${data[key]['orderscm']}">${data[key]['orderscm']}</option>`;
-                }
-                $("#select_ord").append(stdBody);
+function fetch_ord() {
+    $.ajax({
+        url: "{{ route('getorders') }}",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            var stdBody = "";
+            for (var key in data) {
+                stdBody +=
+                    `<option value="${data[key]['orderscm']}">${data[key]['orderscm']}</option>`;
             }
-        });
-    }
-    fetch_ord();
-    // Fetch Records
-    function fetch(ord) {
-        $.ajax({
-            url: "{{ route('orders/records') }}",
-            type: "GEt",
-            data: {
-                ord: ord
-            },
-            dataType: "json",
-            success: function(data) {
-                $('#record_table').DataTable({
-                    searching: false,
-                    ordering: false,
-                    paging: false,
-                    info: false,
-                    "data": data.orders,
-                    "responsive": true,
-                    "columns": [{
-                            "data": "supplyname",
-                        },
-                        {
-                            "data": "orderamount"
-                        },
-                        {
-                            "data": "orderdate",
-                        },
-                        {
-                            "data": "orderdate",
-                        }
-
-                    ]
-                });
-            }
-        });
-    }
-    fetch();
-    // Filter
-    $(document).on("click", "#filter", function(e) {
-        e.preventDefault();
-        var ord = $("#select_ord").val();
-        if (ord !== "") {
-            $('#record_table').DataTable().destroy();
-            fetch(ord);
-        } else if (ord == "") {
-            $('#record_table').DataTable().destroy();
-            fetch('');
-        } else {
-            $('#record_table').DataTable().destroy();
-            fetch();
+            $("#select_ord").append(stdBody);
         }
     });
+}
+fetch_ord();
+// Fetch Records
+function fetch(ord) {
+    $.ajax({
+        url: "{{ route('orders/records') }}",
+        type: "GEt",
+        data: {
+            ord: ord
+        },
+        dataType: "json",
+        success: function(data) {
+            $('#record_table').DataTable({
+                searching: false,
+                ordering: false,
+                paging: false,
+                info: false,
+                "data": data.orders,
+                "responsive": true,
+                "columns": [{
+                        "data": "supplyname",
+                    },
+                    {
+                        "data": "orderamount"
+                    },
+                    {
+                        "data": "orderdate",
+                    },
+                    {
+                        "data": "orderdate",
+                    }
+
+                ]
+            });
+        }
+    });
+}
+fetch();
+// Filter
+$(document).on("click", "#filter", function(e) {
+    e.preventDefault();
+    var ord = $("#select_ord").val();
+    if (ord !== "") {
+        $('#record_table').DataTable().destroy();
+        fetch(ord);
+    } else if (ord == "") {
+        $('#record_table').DataTable().destroy();
+        fetch('');
+    } else {
+        $('#record_table').DataTable().destroy();
+        fetch();
+    }
+});
 </script>
 
 @endsection

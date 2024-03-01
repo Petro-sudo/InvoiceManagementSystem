@@ -10,6 +10,10 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function create_order()
+    {
+        return view('order.createorder');
+    }
 
     public function __construct(Role $role)
     {

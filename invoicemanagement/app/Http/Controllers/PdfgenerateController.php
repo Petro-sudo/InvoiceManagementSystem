@@ -12,6 +12,7 @@ class PdfgenerateController extends Controller
 {
     //
 
+
     public function generatePDF($id)
     {
         $orders = Order::All();
