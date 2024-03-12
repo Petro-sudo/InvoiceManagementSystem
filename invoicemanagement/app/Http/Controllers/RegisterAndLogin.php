@@ -13,11 +13,10 @@ use App\Models\Invoice;
 
 class RegisterAndLogin extends Controller
 {
-    protected $user;
+
     public function __construct()
     {
         $this->middleware('auth');
-        $this->user = Auth::User();
     }
     public function create_order()
     {
@@ -64,10 +63,24 @@ class RegisterAndLogin extends Controller
     }
 
     //view login form
-    public function loginuser()
-    {
-        return view('auth.login');
-    }
+    // public function loginuser()
+    // {
+    //     return view('auth.login');
+    // }
+
+    // public function authenticate(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required'
+    //     ]);
+
+    //     if (Auth::attempt($credentials)) {
+    //         $request->session()->regenerate();
+    //         //return redirect()->route('dashboard')->withSuccess('You have successfully logged in!');
+    //     }
+    //     return back()->withErrors(['email' => 'Invailid Credentials ',])->onlyInput('email');
+    // }
     public function dashboard()
     {
         $role = Auth::user()->role;

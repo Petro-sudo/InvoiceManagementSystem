@@ -40,7 +40,8 @@ Route::middleware([
 
 
 Route::controller(RegisterAndLogin::class)->group(function () {
-    Route::get('/loginUser', 'loginuser')->name('loginuser');
+    // Route::get('/login', 'login')->name('login');
+    // Route::post('/authenticate', 'authenticate')->name('authenticate');
     //Route::get('/register', 'register')->name('register');
     Route::get('/create_users', 'createusers')->name('createuser')->middleware('admin');;
     Route::post('/store', 'store')->name('store');
