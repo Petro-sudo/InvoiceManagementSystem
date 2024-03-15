@@ -48,6 +48,8 @@ Route::controller(RegisterAndLogin::class)->group(function () {
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::get('/logout', 'logout')->name('logout');
     //Route::get('/admin', 'admindashboard')->name('admindash');
+    Route::get('/change_password', 'changepassword')->name('changepassword');
+    Route::post('/update_password', 'updatepassword')->name('updatepassword');
 });
 
 Route::controller(ViewUsers::class)->group(function () {

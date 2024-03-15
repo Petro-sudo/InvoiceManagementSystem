@@ -104,8 +104,6 @@ class RegisterAndLogin extends Controller
             return redirect()->route('login')->withErrors(['email' => 'Please login to access the dashboard.',])->onlyInput('email');
         }
     }
-
-
     public function createusers()
     {
         return view('users.createuser');
@@ -113,6 +111,16 @@ class RegisterAndLogin extends Controller
     public function viewOrder()
     {
     }
+    //change and update pwd
+    public function changepassword()
+    {
+        return view('password.changepassword');
+    }
+    public function updatepassword(Request $request)
+    {
+    }
+
+
     public function logout(Request $request)
     {
         Auth::logout();

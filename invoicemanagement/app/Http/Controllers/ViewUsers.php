@@ -37,12 +37,18 @@ class ViewUsers extends Controller
     }
     public function adminedit($users)
     {
-        if ($users->id != auth()->id()) {
-            abort(code: 403);
-        }
         $users = User::find($users);
         return view('admin.editadmin')->with('users', $users);
     }
+    // public function adminedit()
+    // {
+    //     $users = Auth::user();
+    //     if ($users->id != auth()->id()) {
+    //         abort(code: 403);
+    //     }
+    //     $users = User::find($users);
+    //     return view('admin.editadmin')->with('users', $users);
+    // }
     public function updateadmin(User $users, Request $request)
     {
         $data = $request->validate([
@@ -51,9 +57,6 @@ class ViewUsers extends Controller
             'surname' => 'required|string|max:250',
             'persal' => 'required|numeric|digits:8',
 
-
-
-            //'mentorID' => 'required'
         ]);
 
         $users->update($data);
@@ -91,9 +94,6 @@ class ViewUsers extends Controller
             'name' => 'required|string|max:250',
             'surname' => 'required|string|max:250',
             'persal' => 'required|numeric|digits:8',
-            //'password' => 'required|min:8|confirmed',
-
-            //'mentorID' => 'required'
         ]);
 
         $users->update($data);
