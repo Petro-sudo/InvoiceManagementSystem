@@ -117,17 +117,16 @@ class ViewUsers extends Controller
     {
         $data = $request->validate([
 
-            'name' => 'required|string|max:250',
-            'surname' => 'required|string|max:250',
-            'persal' => 'required|numeric|digits:8',
+            //'persal' => 'required|numeric|digits:8',
             'role' => 'required|integer',
-            'password' => 'required|min:8|confirmed',
+            //'password' => 'required|min:8|confirmed',
             //'mentorID' => 'required'
         ]);
         $users->update($data);
         Alert::success('Success', 'User Successfully Updated');
         return redirect()->route('viewusers');
         //->with('suceess','msg for success')
+        
 
     }
 

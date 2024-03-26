@@ -9,6 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ViewUsers;
 use App\Http\Middleware\ProtectPagesMiddleware;
 use App\Http\Middleware\GuestMiddleware;
+use App\Http\Controllers\ChangePassword;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,10 +49,19 @@ Route::controller(RegisterAndLogin::class)->group(function () {
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::get('/logout', 'logout')->name('logout');
     //Route::get('/admin', 'admindashboard')->name('admindash');
-    Route::get('/change_password', 'changepassword')->name('changepassword');
-    Route::post('/update_password', 'updatepassword')->name('updatepassword');
-});
+   });
 
+   Route::middleware('auth')->group(function () {
+    Route::get('change_password', [App\Http\Controllers\Auth\ChangePassword::class, 'changepassword'])
+    ->name('changepassword');
+    Route::post('update_password', [App\Http\Controllers\Auth\ChangePassword::class, 'updatepassword'])
+    ->name('updatepassword');
+    Route::get('changepassword', [App\Http\Controllers\Auth\ChangePassword::class, 'changepwd'])
+    ->name('changepwd');
+    Route::post('updatepassword', [App\Http\Controllers\Auth\ChangePassword::class, 'updatepwd'])
+    ->name('updatepwd');
+   });
+   
 Route::controller(ViewUsers::class)->group(function () {
     Route::get('/viewusers', 'viewusers')->name('viewusers')->middleware('admin');
     Route::get('/authorizer', 'viewauthorizer')->name('authorizer');

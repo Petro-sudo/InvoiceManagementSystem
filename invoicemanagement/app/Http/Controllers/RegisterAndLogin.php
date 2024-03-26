@@ -62,25 +62,6 @@ class RegisterAndLogin extends Controller
         return redirect()->route('viewusers');
     }
 
-    //view login form
-    // public function loginuser()
-    // {
-    //     return view('auth.login');
-    // }
-
-    // public function authenticate(Request $request)
-    // {
-    //     $credentials = $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required'
-    //     ]);
-
-    //     if (Auth::attempt($credentials)) {
-    //         $request->session()->regenerate();
-    //         //return redirect()->route('dashboard')->withSuccess('You have successfully logged in!');
-    //     }
-    //     return back()->withErrors(['email' => 'Invailid Credentials ',])->onlyInput('email');
-    // }
     public function dashboard()
     {
         $role = Auth::user()->role;

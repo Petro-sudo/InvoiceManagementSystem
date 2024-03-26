@@ -37,37 +37,40 @@ Change Password
             <div class="col-md-8">
                 <a href="{{route('dashboard')}}">BACK</a>
                 <br>
+                @if (session('message'))
+                <h5 class="alert alert-success mb-2">{{ session('message') }}</h5>
+                @endif
+
+                @if ($errors->any())
+                <ul class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                    <li class="text-danger">{{ $error }}</li>
+                    @endforeach
+                </ul>
+                @endif
+
                 <div class="card">
                     <p class="card-header" style="text-align: center; font-weight: bold;">{{Auth::user()->name}}'s
                         Change Password</p>
                     <div class="card-body">
-                        <form action="{{route('updatepassword')}}" id="change_password_form" method="post">
+                        <form action="{{route('updatepassword')}}" method="post">
                             @csrf
-                            <div class="form-group">
-                                <label for="old_password">Old Password</label>
-                                <input type="password" name="old_password" class="form-control" id="old_password">
-
-                                @if($errors->any('old_password'))
-                                <span class="text-danger">{{$errors->first('old_password')}}</span>
-                                @endif
+                            <div class="mb-3">
+                                <label>Current Password</label>
+                                <input type="password" name="old_password" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label for="password">New Password</label>
-                                <input type="password" name="new_password" class="form-control" id="new_password">
-                                @if($errors->any('new_password'))
-                                <span class="text-danger">{{$errors->first('new_password')}}</span>
-                                @endif
+                            <div class="mb-3">
+                                <label>New Password</label>
+                                <input type="password" name="password" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label for="confirm_password">Confirm Password</label>
-                                <input type="password" name="confirm_password" class="form-control"
-                                    id="confirm_password">
-                                @if($errors->any('confirm_password'))
-                                <span class="text-danger">{{$errors->first('confirm_password')}}</span>
-                                @endif
+                            <div class="mb-3">
+                                <label>Confirm Password</label>
+                                <input type="password" name="password_confirmation" class="form-control" />
                             </div>
-
-                            <button type="submit" class="btn btn-primary">Update Password</button>
+                            <div class="mb-3 text-end">
+                                <hr>
+                                <button type="submit" class="btn btn-primary">Update Password</button>
+                            </div>
                         </form>
                     </div>
 
@@ -76,5 +79,4 @@ Change Password
             </div>
         </div>
     </div>
-
     @endsection

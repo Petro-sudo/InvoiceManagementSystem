@@ -38,4 +38,9 @@ class ConfirmablePasswordController extends Controller
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
+
+    public function changepassword()
+    {
+        return view('password.changepassword');
+    }
 }
