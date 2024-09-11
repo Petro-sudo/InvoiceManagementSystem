@@ -33,7 +33,7 @@ Order Dashboard
 
                 <!-- <th>Payment Status</th> -->
                 <th>View Reciept</th>
-                <th>Generate Reciept</th>
+                <th>Generate Receipt</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +47,7 @@ Order Dashboard
                 <td class="text-center">{{$data->fullpaid }}</td>
                 @endforeach -->
                 <td>
-                    <a href="{{route('view_invoice',[($order['id'])])}}">View Recipe</a>
+                    <a href="{{route('view_invoice',[($order['id'])])}}">View Receipt</a>
                 </td>
                 <td>
                     <a href="{{route('generate_pdf',[($order['id'])])}}">Generate PDF</a>

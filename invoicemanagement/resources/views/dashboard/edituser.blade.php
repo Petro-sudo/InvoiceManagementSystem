@@ -34,8 +34,7 @@
                     <div class="mb-3 row">
                         <label for="name" class="col-md-4 col-form-label text-md-end text-start">Name</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name" value="{{$users->name}}">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{$users->name}}">
                             @if ($errors->has('name'))
                             <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
@@ -44,19 +43,17 @@
                     <div class="mb-3 row">
                         <label for="surname" class="col-md-4 col-form-label text-md-end text-start">Surname</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control @error('surname') is-invalid @enderror" id="surname"
-                                name="surname" value="{{$users->surname}}">
+                            <input type="text" class="form-control @error('surname') is-invalid @enderror" id="surname" name="surname" value="{{$users->surname}}">
                             @if ($errors->has('surname'))
                             <span class="text-danger">{{ $errors->first('surname') }}</span>
                             @endif
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="persal" class="col-md-4 col-form-label text-md-end text-start">Persel
+                        <label for="persal" class="col-md-4 col-form-label text-md-end text-start">Persal
                             Number</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control @error('persal') is-invalid @enderror" id="persal"
-                                name="persal" value="{{$users->persal}}">
+                            <input type="text" class="form-control @error('persal') is-invalid @enderror" id="persal" name="persal" value="{{$users->persal}}">
                             @if ($errors->has('persal'))
                             <span class="text-danger">{{ $errors->first('persal') }}</span>
                             @endif

@@ -30,8 +30,8 @@ Invoice Dashboard
                 <th>Order Number SCM</th>
                 <th>Order Date</th>
                 <th>Supply Name</th>
-                <th>View Reciept</th>
-                <th>Generate Reciept</th>
+                <th>View Receipt</th>
+                <th>Generate Receipt</th>
             </tr>
         </thead>
         <tbody>
@@ -41,11 +41,9 @@ Invoice Dashboard
                 <td class="text-center">{{$order->orderscm}}</td>
                 <td class="text-center">{{$order->orderdate}}</td>
                 <td class="text-center">{{$order->supplyname}}</td>
-                <!-- @foreach ($data1 as $data)
-                <td class="text-center">{{$data->fullpaid }}</td>
-                @endforeach -->
+
                 <td class="text-center">
-                    <a href="{{route('view_invoice',[($order['id'])])}}">View Recipe</a>
+                    <a href="{{route('view_invoice',[($order['id'])])}}">View Receipt</a>
                 </td>
                 <td class="text-center">
                     <a href="{{route('generate_pdf',[($order['id'])])}}">Generate PDF</a>
